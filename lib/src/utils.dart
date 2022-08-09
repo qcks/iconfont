@@ -36,17 +36,22 @@ class Utils {
 
   // http get
   static Future<String> httpGet(String url) async {
-    Uri uri = Uri.parse(url);
-    uri = uri.replace(scheme: "http");
-
-    final rsp = await http.get(uri);
-    if (rsp.statusCode != 200) {
-      print("${uri.toString()} 请求失败 , statusCode = ${rsp.statusCode}");
-      return "";
+    try {
+      if (url.isEmpty) {
+        throw "请求url异常${url}";
+      }
+      Uri uri = Uri.parse(url);
+      uri = uri.replace(scheme: "http");
+      final rsp = await http.get(uri);
+      if (rsp.statusCode != 200) {
+        print("${uri.toString()} 请求失败 , statusCode = ${rsp.statusCode}");
+        return "";
+      }
+      final contents = rsp.body;
+      return contents;
+    } catch (e) {
+      throw e;
     }
-
-    final contents = rsp.body;
-    return contents;
   }
 
   // 下载到文件

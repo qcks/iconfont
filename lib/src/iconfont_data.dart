@@ -29,9 +29,9 @@ class IconFontData {
           unicodeDecimal: '',
         );
       }).toList(),
-      tffPath: RegExp(r"//at.alicdn.com/t/font.*\.ttf\?t=[0-9]{13}")
-              .stringMatch(data) ??
-          "",
+      tffPath:
+          RegExp(r"//at.alicdn.com/.*\.ttf\?t=[0-9]{13}").stringMatch(data) ??
+              "",
     );
   }
 
@@ -58,6 +58,11 @@ class IconFontData {
     data['tff_path'] = this.tffPath;
     data['font_package'] = this.fontPackage;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'IconFontData{fontFamily: $fontFamily, cssPrefixText: $cssPrefixText, glyphs: $glyphs, tffPath: $tffPath, fontPackage: $fontPackage}';
   }
 }
 
