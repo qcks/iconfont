@@ -35,7 +35,7 @@ $itemContent
   /// _buildItem
   static String _buildItem(
       String preText, IconFontGlyph glyphs, String fontPackage) {
-    String iconName = Utils.formatName("${preText}${glyphs.fontClass}");
+    String iconName = Utils.formatName("${preText}${glyphs.fontClass}").toLowerCase();
     String unicode = glyphs.unicode ?? "";
     String glyphsName = "";
     String packageName = "";
