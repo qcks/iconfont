@@ -10,7 +10,7 @@ dependencies:
   yaml: ^3.1.0
   args: ^2.0.0
   http: ^0.13.4
-  path: ^1.8.1
+  path: 1.8.0
 
 executables:
   iconfont:
