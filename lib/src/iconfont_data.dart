@@ -1,3 +1,5 @@
+import '../iconfont.dart';
+
 class IconFontData {
   String? fontFamily;
   String? cssPrefixText;
@@ -15,24 +17,24 @@ class IconFontData {
 
   factory IconFontData.parse(String data) {
     return IconFontData(
-      fontFamily:
-          RegExp(r'font-family: "(.+?)";').firstMatch(data)?.group(1) ?? "",
-      cssPrefixText: "",
-      glyphs: RegExp(r'\.(.+):before[\S\s]*?content: "\\(.+)";')
-          .allMatches(data)
-          .map((m) {
-        return IconFontGlyph(
-          fontClass: m.group(1) ?? "",
-          iconId: '',
-          name: '',
-          unicode: m.group(2) ?? "",
-          unicodeDecimal: '',
-        );
-      }).toList(),
-      tffPath:
-          RegExp(r"//at.alicdn.com/.*\.ttf\?t=[0-9]{13}").stringMatch(data) ??
-              "",
-    );
+        fontFamily:
+            RegExp(r'font-family: "(.+?)";').firstMatch(data)?.group(1) ?? "",
+        cssPrefixText: "",
+        glyphs: RegExp(r'\.(.+):before[\S\s]*?content: "\\(.+)";')
+            .allMatches(data)
+            .map((m) {
+          return IconFontGlyph(
+            fontClass: m.group(1) ?? "",
+            iconId: '',
+            name: '',
+            unicode: m.group(2) ?? "",
+            unicodeDecimal: '',
+          );
+        }).toList(),
+        tffPath:
+            RegExp(r"//at.alicdn.com/.*\.ttf\?t=[0-9]{13}").stringMatch(data) ??
+                "",
+        fontPackage: iconFontConfig.fontPackage);
   }
 
   IconFontData.fromJson(Map<String, dynamic> json) {
@@ -84,7 +86,9 @@ class IconFontGlyph {
     iconId = json['icon_id'];
     fontClass = json['font_class'];
     unicode = json['unicode'];
-    unicodeDecimal = json['unicode_decimal'];
+    if (json['unicode_decimal'] != null) {
+      unicodeDecimal = json['unicode_decimal'].toString();
+    }
     name = json['name'];
   }
 
@@ -98,3 +102,6 @@ class IconFontGlyph {
     return data;
   }
 }
+
+var showRemark = false;
+late IconFontConfig iconFontConfig;

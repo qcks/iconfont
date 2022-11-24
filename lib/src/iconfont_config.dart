@@ -12,6 +12,11 @@ class IconFontConfig {
     required this.cssUrl,
     required this.fontPackage,
   });
+
+  @override
+  String toString() {
+    return 'IconFontConfig{readPath: $readPath, writePath: $writePath, dirName: $dirName, cssUrl: $cssUrl, fontPackage: $fontPackage}';
+  }
 }
 
 class IconFontYamlConfig {
