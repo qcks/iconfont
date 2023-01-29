@@ -36,10 +36,15 @@ class IconFontBuilder {
     if (path.basename(configPath) == Constants.PUBSPECYAML) {
       yamlConfig = yamlConfig["iconfont"] ?? [];
     }
-
-    await Future.forEach(yamlConfig, (e) async {
+    List<String> configs = yamlConfig;
+    if (configs.isEmpty) {
+      throw "need css+.json+ttf";
+    }
+    await Future.forEach(configs, (e) async {
       final c = IconFontYamlConfig.fromJson(jsonDecode(jsonEncode(e)));
+      print("sb2");
       await Future.forEach(c.icons ?? [], (icon) async {
+        print("sb3");
         await build(IconFontConfig(
           cssUrl: (icon as IconFontYamlConfigItem).css ?? "",
           dirName: icon.dir ?? "",
