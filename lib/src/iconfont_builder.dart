@@ -34,11 +34,12 @@ class IconFontBuilder {
         jsonDecode(jsonEncode(loadYaml(File(configPath).readAsStringSync())));
 
     if (path.basename(configPath) == Constants.PUBSPECYAML) {
-      yamlConfig = yamlConfig["iconfont"] ?? [];
+      yamlConfig = yamlConfig["iconfont"] ?? <String>[];
     }
     List<String> configs = yamlConfig;
     if (configs.isEmpty) {
-      throw "need css+.json+ttf";
+      // throw "need css+.json+ttf";
+      print("没有远程资源需要build");
     }
     await Future.forEach(configs, (e) async {
       final c = IconFontYamlConfig.fromJson(jsonDecode(jsonEncode(e)));

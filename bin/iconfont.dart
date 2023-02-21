@@ -41,12 +41,13 @@ void main(List<String> args) async {
     if (iconFontConfig.fontPackage.isEmpty) {
       print("fontPackage is main package");
     }
-    print("@@@$iconFontConfig");
+    print("iconFontConfig=$iconFontConfig");
     showRemark = (argResults['remark'].toString()).isNotEmpty;
     await IconFontBuilder.buildFromYamlConfig(argResults['config']);
 
     await IconFontBuilder.scanAndPubSave();
-  } catch (e) {
+  } catch (e, s) {
     print(e.toString());
+    print(s);
   }
 }

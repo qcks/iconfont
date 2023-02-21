@@ -20,6 +20,7 @@ class PubTemp {
     }));
 
     File("pubspec.yaml").writeAsStringSync(lines.join("\n"));
+    print("完成任务,生成${lines.length}个Icon");
   }
 
   static void build(

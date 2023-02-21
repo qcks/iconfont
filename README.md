@@ -133,3 +133,5 @@ iconfont:
       dir: my_icons
 ```
 运行 `iconfont --config iconfont.yaml`
+
+flutter  pub global activate --source path ./
